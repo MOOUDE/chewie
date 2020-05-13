@@ -11,6 +11,8 @@ dependencies:
   open_iconic_flutter: ">=0.3.0 <0.4.0"
   video_player: ">=0.7.0 <0.11.0"
   wakelock: ">=0.1.2 <0.2.0"
+  subtitle_wrapper_package: ^0.1.0
+
 
   flutter:
     sdk: flutter

@@ -5,11 +5,13 @@ import 'package:chewie/src/cupertino_controls.dart';
 import 'package:chewie/src/material_controls.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:subtitle_wrapper_package/subtitle_controller.dart';
+import 'package:subtitle_wrapper_package/subtitle_wrapper_package.dart';
 import 'package:video_player/video_player.dart';
 
 class PlayerWithControls extends StatelessWidget {
   PlayerWithControls({Key key}) : super(key: key);
-
+  String subtitleUrl;
   @override
   Widget build(BuildContext context) {
     final ChewieController chewieController = ChewieController.of(context);
@@ -36,7 +38,13 @@ class PlayerWithControls extends StatelessWidget {
             child: AspectRatio(
               aspectRatio: chewieController.aspectRatio ??
                   _calculateAspectRatio(context),
-              child: VideoPlayer(chewieController.videoPlayerController),
+              child: SubTitleWrapper(
+                videoChild: VideoPlayer(chewieController.videoPlayerController),
+                videoPlayerController: chewieController.videoPlayerController,
+                subtitleController: SubtitleController(
+                showSubtitles: true,
+              ),
+              ),
             ),
           ),
           chewieController.overlay ?? Container(),
